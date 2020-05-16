@@ -1,0 +1,14 @@
+{
+  "name": "SleepyChat",
+  "version": "0.0.1",
+  "description": "CS300 Project",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/anthonybench/CS300_Project.git"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
+  }
+}
