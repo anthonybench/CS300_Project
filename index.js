@@ -12,6 +12,7 @@
   Imports
 ***********************/
 // import websocket object
+var express = require('express');
 var app = require('express')();
 var http = require('http').createServer(app);
 var io = require('socket.io')(http);
@@ -24,6 +25,7 @@ const historyDB = require('./db/chatLogInterface');
   Execution Loop
 ***********************/
 // retrieve init
+app.use(express.static('./'));
 app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
