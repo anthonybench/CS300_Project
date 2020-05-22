@@ -21,7 +21,7 @@ const sqlite3 = require('sqlite3').verbose();
 */
 function build(table, columns, types) {
   // open db
-  let db = new sqlite3.Database('./sleepyChat.db', (err) => {
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
@@ -57,7 +57,7 @@ function build(table, columns, types) {
 */
 function add(table, data) {
   // open db
-  let db = new sqlite3.Database('./sleepyChat.db', (err) => {
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
@@ -88,7 +88,7 @@ function add(table, data) {
 */
 function update(table, column, data, un) {
   // open db
-  let db = new sqlite3.Database('./sleepyChat.db', (err) => {
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
@@ -124,7 +124,7 @@ function update(table, column, data, un) {
 */
 function get(table = "history") {
   // open db
-  let db = new sqlite3.Database('./sleepyChat.db', (err) => {
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
