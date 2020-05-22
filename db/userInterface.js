@@ -1,6 +1,6 @@
 //=====================================================
 //=====================================================
-// SleepyChat Database Interface
+// SleepyChat Database Interface: User Information
 // SQLite3 + Node.js
 //
 // Written by Isaac Yep
@@ -16,17 +16,19 @@ const sqlite3 = require('sqlite3').verbose();
   > column's are defined by list `columns`
   > column's have types defined in list `types`,
     indexed respectively
+  Example:
+    build("users", ["username", "password", "email"], ["text", "text", "text"]);
 */
 function build(table, columns, types) {
   // open db
-  let db = new sqlite3.Database('./db/test.db', (err) => {
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
   });
 
   // create table
-  let sql = 'CREATE TABLE ' + table + '(';
+  let sql = 'CREATE TABLE IF NOT EXISTS ' + table + '(';
   for (i = 0; i < columns.length; i++) {
     if (i != 0)
       sql += ', ';
@@ -43,16 +45,19 @@ function build(table, columns, types) {
   });
 }
 
+
 /***********************
   Add DB entry
 ***********************/
 /*
   > add row to existing `table`
   > new entry defined by list `data`
+  Example:
+    add("users", ["Sleepy Boy", "RK7G36L299I", "anthonybenchyep@gmail.com"]);
 */
 function add(table, data) {
   // open db
-  let db = new sqlite3.Database('./db/test.db', (err) => {
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
@@ -70,6 +75,7 @@ function add(table, data) {
   });
 }
 
+
 /***********************
   Update DB entry
 ***********************/
@@ -77,10 +83,12 @@ function add(table, data) {
   > update existing entry in `table`
   > modify `column` value with `data` where
     match with usernmae `un` is found
+  Example:
+    update("users", "password", "UF353G79i6", "Sleepy Boy");
 */
 function update(table, column, data, un) {
   // open db
-  let db = new sqlite3.Database('./db/test.db', (err) => {
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
@@ -104,16 +112,19 @@ function update(table, column, data, un) {
   });
 }
 
+
 /***********************
   Dump DB
 ***********************/
 /*
   > logs all data in database to console
   > ordered alphabetically by username
+  Example:
+    get("users");
 */
-function get(table) {
+function get(table = "users") {
   // open db
-  let db = new sqlite3.Database('./db/test.db', (err) => {
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
@@ -139,11 +150,12 @@ function get(table) {
 }
 
 
-/***********************
-  CS300 Demo
-***********************/
-// build("users", ["username", "password", "email"], ["text", "text", "text"]);
-// add("users", ["Sleepy Boy", "RK7G36L299I", "anthonybenchyep@gmail.com"]);
-// add("users", ["Awakey Girl", "abcdefg", "cutebutt@butt.butt"]);
-// update("users", "password", "UF353G79i6", "Sleepy Boy");
-get("users");
+/*********************
+ * Exporting
+ ********************/
+module.exports = {
+  build,
+  add,
+  update,
+  get
+}
