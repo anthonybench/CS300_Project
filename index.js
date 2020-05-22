@@ -25,7 +25,7 @@ const historyDB = require('./db/chatLogInterface');
 ***********************/
 // retrieve init
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/chat.html');
+  res.sendFile(__dirname + '/index.html');
 });
 
 userDB.build("users", ["username", "password", "email"], ["text", "text", "text"]);
