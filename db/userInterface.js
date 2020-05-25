@@ -8,6 +8,7 @@
 //=====================================================
 const sqlite3 = require('sqlite3').verbose();
 
+
 /***********************
   Build DB
 ***********************/
@@ -26,7 +27,6 @@ function build(table, columns, types) {
       return console.error(err.message);
     console.log('DB connection - open.');
   });
-
   // create table
   let sql = 'CREATE TABLE IF NOT EXISTS ' + table + '(';
   for (i = 0; i < columns.length; i++) {
@@ -36,7 +36,6 @@ function build(table, columns, types) {
   }
   sql += ')'
   db.run(sql);
-
   // close db
   db.close((err) => {
     if (err)
@@ -62,11 +61,9 @@ function add(table, data) {
       return console.error(err.message);
     console.log('DB connection - open.');
   });
-
   // insert values
   let sql = "INSERT INTO " + table + "(username, password, email)  VALUES('" + data[0] + "', '" + data[1] + "', '" + data[2] + "')";
   db.run(sql);
-
   // close db
   db.close((err) => {
     if (err)
@@ -80,20 +77,19 @@ function add(table, data) {
   Update DB entry
 ***********************/
 /*
-  > update existing entry in `table`
+  > update existing entry in users table
   > modify `column` value with `data` where
     match with usernmae `un` is found
   Example:
-    update("users", "password", "UF353G79i6", "Sleepy Boy");
+    update("password", "UF353G79i6", "Sleepy Boy");
 */
-function update(table, column, data, un) {
+function update(column, data, un, table = "users") {
   // open db
   let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
     console.log('DB connection - open.');
   });
-
   // udpate row
   let sql = "UPDATE " + table + " SET " + column + " = '" + data + "' WHERE username = '" + un + "'";
   console.log(sql);
@@ -103,7 +99,6 @@ function update(table, column, data, un) {
     }
     console.log(`Row(s) updated: ${this.changes}`);
   });
-
   // close db
   db.close((err) => {
     if (err)
@@ -129,7 +124,6 @@ function get(table = "users") {
       return console.error(err.message);
     console.log('DB connection - open.');
   });
-
   // get all
   let sql = "SELECT DISTINCT username UN, password PW, email Email FROM " + table + " ORDER BY UN";
   db.all(sql, [], (err, rows) => {
@@ -140,7 +134,6 @@ function get(table = "users") {
       console.log(row.UN, " | ", row.PW, " | " , row.Email);
     });
   });
-
   // close db
   db.close((err) => {
     if (err)
@@ -149,6 +142,48 @@ function get(table = "users") {
   });
 }
 
+/***********************
+  Check Credentials
+    Against DB
+***********************/
+/*
+  > takes email and pw recieved from
+    front-end form
+  > returns true if match is found
+    else it returns false
+  Example:
+    validate("awakeygirl@gmail.com", "abcdefg");
+*/
+function validate(email, password) {
+  // open db
+  let res = true;
+  let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
+    if (err)
+      return console.error(err.message);
+    console.log('DB connection - open.');
+  });
+  // check credentials
+  let sql = "SELECT email UN FROM users WHERE password = '" + password + "'";
+  console.log(sql);
+  db.get(sql, [], function(err, row) {
+    if (err) {
+      return console.error(err.message);
+    }
+    if (row.UN == email) {
+      res = true;
+      console.log("match found!");
+    }
+    else
+      console.log("no match found!");
+  });
+  // close db
+  db.close((err) => {
+    if (err)
+      return console.error(err.message);
+    console.log('DB connection - close.');
+  });
+  return res;
+}
 
 /*********************
  * Exporting
@@ -157,5 +192,6 @@ module.exports = {
   build,
   add,
   update,
-  get
+  get,
+  validate
 }

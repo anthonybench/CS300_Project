@@ -5,61 +5,119 @@
     <head>
         <meta charset="utf-8">
 
-        <!-- bootstrap v4.4.1 -->
+        <!--Bootstrap-->
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet"
             href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
             crossorigin="anonymous">
-        <!-- fontawesome -->
+        <!--Font Awesome-->
         <script src="https://kit.fontawesome.com/1c529ef2e0.js" crossorigin="anonymous"></script>
-        <!-- custom -->
+        <!--Custom-->
+        <link rel="stylesheet" href="css/master.css">
         <link rel="stylesheet" href="css/landing.css">
+        <link href="https://fonts.googleapis.com/css?family=Josefin+Sans&display=swap" rel="stylesheet">
+
         <title>SleepyChat</title>
     </head>
 
     <!--BODY-->
     <body>
-        <!--HEADER-->
-        <header>
-
-        </header>
 
         <!--MAIN-->
         <main>
-            <a href="chat.html" target="_blank">
-                Go to app
-            </a>
-
-            
-            <!-- <ul id="messages"></ul>
-            <form action="">
-                <input id="m" autocomplete="off" /><button>Send</button>
-            </form> -->
+            <div class="top-container">
+                <!--Welcome-->
+                <div class="top-links">
+                    <a class="resume" href="assets/Isaac Yep; Personal Resume.pdf" target="_blank">
+                        View my resume
+                    </a>
+                    <a class="email" href="mailto:anthonybenchyep@gmail.com?subject=Hey Isaac!&body=I'd like to contribute to SleepyChat...">
+                        Contact me
+                    </a>
+                </div>
+                <p class="welcome">
+                    Hello! ようこそ！
+                </p>
+                    <!--SleepChat Portal-->
+                    <div class="internal-links">
+                        <!--Modal Button-->
+                        <button type="button" class="btn internal-button" data-toggle="modal" data-target="#widgetModal">
+                            SleepyChat
+                        </button>
+                        <!-- Login Form -->
+                        <div class="login">
+                            Login<br>
+                            <form class="login-header" action="">
+                                <label for="email">email:</label><br>
+                                <input class="login-text" type="text" id="email" value="awakeygirl@gmail.com"><br><br>
+                                <label for="pw">Password:</label><br>
+                                <input class="login-text" type="text" id="pw" value="abcdefg"><br><br>
+                                <input class="btn btn-info" type="submit" value="Submit">
+                              </form>
+                        </div>
+                        <!--Widget Modal-->
+                        <div class="modal fade" id="widgetModal" tabindex="-1" role="dialog" aria-labelledby="widgetModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                            <div class="modal-content internal-modal">
+                                <div class="modal-header">
+                                <h5 class="modal-title internal-modal-h" id="widgetModalLabel">Hope you enjoy!</h5>
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                </div>
+                                <div class="modal-body">
+                                    <a href="chat.html" target="_blank">Welcome to SleepyChat</a>
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-primary" data-dismiss="modal">close</button>
+                                </div>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Portal End-->
+            </div>
         </main>
 
         <!--FOOTER-->
         <footer>
-
+            <a href="https://www.linkedin.com/in/anthonybench/" target="_blank"><i class="fab fa-linkedin fa-2x"></i></a>
+            <i class="fas fa-heart fa-2x"></i>
+            <a href="https://github.com/anthonybench/CS300_Project" target="_blank"><i class="fab fa-github fa-2x"></i></a>
+            <i class="fas fa-heart fa-2x"></i>
+            <button type="button" class="btn" data-toggle="modal" data-target=".bd-example-modal-sm">
+                <i class="fab fa-discord fa-2x lblue discord-button"></i>
+            </button>
+            <div class="modal fade bd-example-modal-sm" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-sm" role="document">
+                  <div class="modal-content discord-modal">
+                    <p class="discord-modal-h2">Username / Tag</p>
+                        Yeppy McYepface <br>
+                        #9699 <br><br>
+                        <i class="discord-modal-f">Hope to hear from you soon!</i>
+                  </div>
+                </div>
+            </div>
         </footer>
-        
+
         <!-- socket.io handler -->
         <script src="/socket.io/socket.io.js"></script>
         <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
         <script>
             $(function () {
-              var socket = io();
-              $('form').submit(function(e){
+                var socket = io();
+                $('form').submit(function(e){
                 e.preventDefault(); // prevents page reloading
-                socket.emit('chat message', $('#m').val());
-                $('#m').val('');
+                console.log($('#email').val(), $('#pw').val());
+                socket.emit('credentials', $('#email').val(), $('#pw').val());
                 return false;
-              });
-              socket.on('chat message', function(msg){
-                $('#messages').append($('<li>').text(msg));
-              });
+                });
+                socket.on('authenticate', function(msg) {
+                    console.log(msg);
+                });
             });
-          </script>
+        </script>
         <!-- bootstrap v4.4.1 -->
         <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>

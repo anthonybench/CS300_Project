@@ -1,7 +1,160 @@
-/****************
-  Elements
-*****************/
-* {
-  background-color: slategray;
-  color: blueviolet;
+/* Elements -------------------- */
+body {
+  background: #1a1b1e;
 }
+
+footer {
+  padding-top: 6rem;
+  display: inline-flex;
+  align-content: center;
+  width: 35%;
+  justify-content: space-evenly;
+  margin-left: 31%;
+}
+
+
+/* Classes -------------------- */
+.top-links {
+  font-size: large;
+  font-family: "Josefin Sans";
+  display: inline-flex;
+  justify-content: space-between;
+  color: #4CA6FF;
+  float: right;
+  margin-right: 5%;
+  margin-top: 1rem;
+  width: 40%;
+}
+
+.welcome {
+  display: flex;
+  justify-content: left;
+  font-family: "Jetbrains Mono";
+  padding-top: 1rem;
+  padding-left: 1rem;
+  letter-spacing: 3px;
+  font-size: xx-large;
+  color: white;
+  font-style: italic;
+}
+
+.internal-links {
+  display: flex;
+  justify-content: space-evenly;
+  margin-top: 10%;
+  max-width: 80%;
+  margin-left: 9%;
+}
+
+.internal-button {
+  color: #4CA6FF;
+  max-width: 350px;
+  max-height: 180px;
+  font-size: 200%;
+  font-family: "Jetbrains Mono";
+  border: 5px solid rgba(114, 28, 13, 0.459);
+  border-radius: 8px;
+  box-shadow: 3px 3px 5px 0 black;
+}
+
+.internal-modal-h {
+  font-family: "Jetbrains mono";
+  background: #1a1b1e;
+  color: white;
+}
+
+.internal-modal {
+  text-align: center;
+  font-family: "Jetbrains mono";
+  background: #1a1b1e;
+  color: white;
+  border: 2px solid rgb(10, 62, 114);
+}
+
+.lblue {
+  color: #4CA6FF;
+}
+
+.discord-modal {
+  text-align: center;
+  font-family: "Jetbrains mono";
+  background: #1a1b1e;
+  color: white;
+  border: 2px solid rgb(10, 62, 114);
+  border-radius: 8px;
+  padding: 6px;
+}
+
+.discord-modal-h2 {
+  text-decoration: underline;
+  color: #4CA6FF;
+}
+
+.discord-modal-f {
+  font-size: small;
+}
+
+.login {
+  justify-content: center;
+  text-align: center;
+  padding-top: 5px;
+  color: white;
+  font-family: "Jetbrains mono";
+  float: right;
+}
+
+.login-header {
+  justify-content: center;
+  text-align: left;
+  padding-left: 5px;
+  padding-right: 5px;
+  padding-bottom: 5px;
+  color: white;
+  font-family: "Josefin Sans";
+  float: right;
+  border: 5px solid #17A2B8;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px 0 black;
+}
+
+.login-text {
+  color: slategray;
+
+}
+
+/* Clear Fix -------------------- */
+/* .top-links:after {
+  content: "";
+  clear: right;
+  display: inline-flexbox;
+  justify-content: space-evenly;
+  margin-right: 3rem;
+  padding-top: 1.9rem;
+  border: 5px solid tomato;
+} */
+
+/* Psuedo -------------------- */
+a:link {
+  color: #4CA6FF;
+  text-decoration: none;
+}
+
+a:visited {
+  color: #4CA6FF;
+}
+
+a:hover {
+  color: #343a40;
+}
+
+a:active {
+  color: #4CA6FF;
+}
+
+.discord-button:hover {
+  color: #343a40;
+}
+
+/* * {
+  background-color: #e5dfeb;
+} */

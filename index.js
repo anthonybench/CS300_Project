@@ -36,7 +36,9 @@ historyDB.build("history", ["username", "msg"], ["text", "text"]);
 // connection loop
 io.on('connection', (socket) => {
   userDB.add("users", ["Sleepy Boy", "RK7G36L299I", "anthonybenchyep@gmail.com"]);
-  userDB.add("users", ["Awakey Girl", "abcdefg", "soAwake@girl.energy"]);
+  userDB.add("users", ["Awakey Girl", "abcdefg", "awakeygirl@gmail.com"]);
+  // userDB.update("password", "betterPassword", "Sleepy Boy");
+  // userDB.update("password", "evenBetterPassword", "Awakey Girl");
   console.log('a user connected');
   socket.on('disconnect', () => {
     historyDB.get();
@@ -44,12 +46,18 @@ io.on('connection', (socket) => {
     console.log('user disconnected');
   });
   socket.on('chat message', (msg) => {
-
     io.emit('chat message', msg);
     console.log('message: ' + msg);
     historyDB.add("history", ["Sleepy Boy", msg]);
   });
-
+  socket.on('credentials', (email, passWord) => {
+    // open db
+      let res = userDB.validate(email, passWord);
+      if (res)
+        io.emit('authenticate', "Success! Weclcome back " + email + '!');
+      else
+        io.emit('authenticate', "Authentication failed. Please try again.");
+  });
 });
 // port exposure
 http.listen(3000, () => {

@@ -1,0 +1,17 @@
+/* Imported Fonts -------------------- */
+@font-face {
+  font-family: 'Jetbrains Mono';
+  src: url('../assets/fonts/JetBrainsMono-1.0.3/web/woff/JetBrainsMono-Regular.woff') format('woff'),
+       url('../assets/fonts/JetBrainsMono-1.0.3/web/woff/JetBrainsMono-Medium.woff') format('woff'),
+       url('../assets/fonts/JetBrainsMono-1.0.3/web/woff/JetBrainsMono-Medium-Italic.woff') format('woff'),
+       url('../assets/fonts/JetBrainsMono-1.0.3/web/woff/JetBrainsMono-Italic.woff') format('woff'),
+       url('../assets/fonts/JetBrainsMono-1.0.3/web/woff/JetBrainsMono-ExtraBold.woff') format('woff'),
+       url('../assets/fonts/JetBrainsMono-1.0.3/web/woff/JetBrainsMono-ExtraBold-Italic.woff') format('woff'),
+       url('../assets/fonts/JetBrainsMono-1.0.3/web/woff/JetBrainsMono-Bold.woff') format('woff'),
+       url('../assets/fonts/JetBrainsMono-1.0.3/web/woff/JetBrainsMono-Bold-Italic.woff') format('woff');
+}
+@font-face {
+font-family: 'Josefin Sans';
+src: url('../assets/fonts/Josefin-sans-v14/josefin-sans-v14-latin-regular.woff') format('woff');
+}
+
