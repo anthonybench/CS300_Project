@@ -156,7 +156,7 @@ function get(table = "users") {
 */
 function validate(email, password) {
   // open db
-  let res = true;
+  let res = false;
   let db = new sqlite3.Database('./db/sleepyChat.db', (err) => {
     if (err)
       return console.error(err.message);
@@ -165,17 +165,23 @@ function validate(email, password) {
   // check credentials
   let sql = "SELECT email UN FROM users WHERE password = '" + password + "'";
   console.log(sql);
-  db.get(sql, [], function(err, row) {
-    if (err) {
-      return console.error(err.message);
-    }
-    if (row.UN == email) {
-      res = true;
-      console.log("match found!");
-    }
-    else
-      console.log("no match found!");
-  });
+  try {
+    db.get(sql, [], function(err, row) {
+      if (err) {
+        // return console.error(err.message);
+        console.log("no match found!");
+      }
+      if (row.UN == email) {
+        res = true;
+        console.log("match found!");
+      }
+      else
+        console.log("no match found!");
+    });
+  } catch (err) {
+    console.log("no match found!");
+  }
+
   // close db
   db.close((err) => {
     if (err)

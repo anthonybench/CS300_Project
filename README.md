@@ -2,7 +2,7 @@
 # *SleepyChat* by Isaac Yep
 ## **Description**
 *SleepyChat* is a web-hosted chat application written by Isaac Yep. This web app exists solely as a means to learn, and as it falls under the *MIT License*, is free to use by anyone for educational or personal utility.<br>
-This application was made under the supervision of project manager *Li Shi* and professor *Fei Xie* at *Portland State University* solely by *Isaac Yep*. Some of the fonts in this application are not supported by mobile browsers or deprecated desktop broswer clients.
+This application was made under the supervision of project manager *Li Shi* and professor *Fei Xie* at *Portland State University* solely by *Isaac Yep*. Some of the fonts in this application are not supported by mobile browsers or deprecated desktop browser clients.
 
 ## **Front-end**
 `index.js` manages the server/host filesystem exposure and serves the landing page `index.html` where the user can enter credentials to authenticate themselves. For demonstration purposes, it logs to the console success or failure of authentication.<br>

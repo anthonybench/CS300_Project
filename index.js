@@ -37,6 +37,7 @@ historyDB.build("history", ["username", "msg"], ["text", "text"]);
 io.on('connection', (socket) => {
   userDB.add("users", ["Sleepy Boy", "RK7G36L299I", "anthonybenchyep@gmail.com"]);
   userDB.add("users", ["Awakey Girl", "abcdefg", "awakeygirl@gmail.com"]);
+  userDB.add("users", ["Drowsy Kid", "p@$$word", "drowsy@yahoo.com"]);
   // userDB.update("password", "betterPassword", "Sleepy Boy");
   // userDB.update("password", "evenBetterPassword", "Awakey Girl");
   console.log('a user connected');
